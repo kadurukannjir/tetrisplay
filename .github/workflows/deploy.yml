@@ -33,18 +33,17 @@ jobs:
           version: 9
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
-        run: pnpm --filter @workspace/3d-game run build
+        run: pnpm run build
         env:
           BASE_PATH: /tetrisplay/
-          PORT: "4173"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: artifacts/3d-game/dist/public
+          path: dist
 
   deploy:
     environment:
